@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>nz.co.senanque</groupId>
   <artifactId>schema-translator-maven-plugin</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1</version>
   <packaging>maven-plugin</packaging>
   <name>SchemaTranslatorMavenPlugin</name>
   <url>www.madurasoftware.com</url>
@@ -35,9 +35,9 @@
 		</developer>
 	</developers>
 	<scm>
-		<url>https://github.com/RogerParkinson/SchemaTranslatorMavenPlugin/trunk/</url>
-		<connection>scm:svn:https://github.com/RogerParkinson/SchemaTranslatorMavenPlugin/trunk/</connection>
-		<developerConnection>scm:svn:https://github.com/RogerParkinson/SchemaTranslatorMavenPlugin/trunk/</developerConnection>
+		<url>https://github.com/RogerParkinson/SchemaTranslatorMavenPlugin/tags/schema-translator-maven-plugin-0.0.1</url>
+		<connection>scm:svn:https://github.com/RogerParkinson/SchemaTranslatorMavenPlugin/tags/schema-translator-maven-plugin-0.0.1</connection>
+		<developerConnection>scm:svn:https://github.com/RogerParkinson/SchemaTranslatorMavenPlugin/tags/schema-translator-maven-plugin-0.0.1</developerConnection>
 	</scm>
 	<issueManagement>
 		<system>GitHub</system>
