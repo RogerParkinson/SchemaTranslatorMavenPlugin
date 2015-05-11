@@ -29,7 +29,7 @@ Example of use:
 		<dependency>
 			<groupId>nz.co.senanque</groupId>
 			<artifactId>madura-objects</artifactId>
-			<version>2.2.2-SNAPSHOT</version>
+			<version>2.2.5</version>
 		</dependency>
 	</dependencies>
 </plugin>
