@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>nz.co.senanque</groupId>
   <artifactId>schema-translator-maven-plugin</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>maven-plugin</packaging>
   <name>SchemaTranslatorMavenPlugin</name>
   <url>www.madurasoftware.com</url>
@@ -158,7 +158,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore></ignore>
+										<ignore />
 									</action>
 								</pluginExecution>
 							</pluginExecutions>
