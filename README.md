@@ -4,7 +4,8 @@ SchemaTranslatorMavenPlugin
 A maven plugin that generates a DDL file from JPA annotated classes.
 Example of use:
 
-`<plugin>
+````
+<plugin>
 	<groupId>nz.co.senanque</groupId>
 	<artifactId>schema-translator-maven-plugin</artifactId>
 	<version>1.0.0</version>
@@ -31,7 +32,8 @@ Example of use:
 			<version>2.2.2-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
-</plugin>`
+</plugin>
+````
 
 The dependency may not be needed in your project, or you may need other dependencies. If your JPA Entity classes
 refer to other project-related classes or interfaces or annotations they need to be in this dependencies list.
