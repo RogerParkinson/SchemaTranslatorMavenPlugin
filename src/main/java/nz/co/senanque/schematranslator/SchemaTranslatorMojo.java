@@ -74,7 +74,7 @@ public class SchemaTranslatorMojo
 	 * @parameter expression="${basedir}/target/"
 	 * @required
 	 */
-    private String destdir;
+    private String destDir;
 
 	/**
 	 * Name of the persistence file.
@@ -111,7 +111,7 @@ public class SchemaTranslatorMojo
     public void executeWithLogging()
         throws MojoExecutionException
     {
-        String packageDirectory = getPath(destdir)+File.separatorChar;
+        String packageDirectory = getPath(destDir)+File.separatorChar;
         File targetDir = new File(packageDirectory);
         targetDir.mkdirs();
 
@@ -123,7 +123,7 @@ public class SchemaTranslatorMojo
 				.setDrops(drops)
 				.setClassLoader(getClassLoader(project.getTestClasspathElements()))
 				.addAnnotatedClasses(getPath(persistenceFile),getPath(persistenceUnit))
-				.translate(new FileOutputStream(new File(destdir+destFile)));
+				.translate(new FileOutputStream(new File(destDir+destFile)));
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new MojoExecutionException(e.getMessage());
@@ -166,12 +166,12 @@ public class SchemaTranslatorMojo
 		this.dialect = dialect;
 	}
 
-	public String getDestdir() {
-		return destdir;
+	public String getDestDir() {
+		return destDir;
 	}
 
-	public void setDestdir(String destdir) {
-		this.destdir = destdir;
+	public void setDestDir(String destdir) {
+		this.destDir = destdir;
 	}
 
 	public String getPersistenceFile() {
