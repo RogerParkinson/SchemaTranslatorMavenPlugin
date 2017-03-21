@@ -161,10 +161,10 @@ public class SchemaTranslatorMojo
     }
 
 	/**
-	 * @see <a href="http://4thline.org/articles/Extending%20the%20Maven%20plugin%20classpath.html</a>
+	 * {@link http://4thline.org/articles/Extending%20the%20Maven%20plugin%20classpath.html}
 	 * @param elements plugin file list
 	 * @return valid classloader
-	 * @throws MojoExecutionException
+	 * @throws MojoExecutionException generic error
 	 */
 	protected ClassLoader getClassLoader(List<String> elements) throws MojoExecutionException {
 	    ClassWorld world = new ClassWorld();

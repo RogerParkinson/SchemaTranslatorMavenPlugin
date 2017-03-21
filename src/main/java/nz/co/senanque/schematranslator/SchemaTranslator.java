@@ -50,6 +50,7 @@ public class SchemaTranslator {
 	/**
 	 * Method determines classes which will be used for DDL generation. 
 	 * @param annotatedClasses - entities annotated with Hibernate annotations.
+	 * @return the translator
 	 */
 	public SchemaTranslator addAnnotatedClasses(Class<?>[] annotatedClasses) {
 		for (Class<?> clazz : annotatedClasses) {
@@ -60,10 +61,10 @@ public class SchemaTranslator {
 	/**
 	 * Method determines classes used for DDL generation by examining the persistence file
 	 * and the persistence unit in it.
-	 * @param persistenceFile
-	 * @param persistenceUnit
+	 * @param persistenceFile JPA persistence file
+	 * @param persistenceUnit JPA persistence unit name
 	 * @return SchemaTranslator
-	 * @throws Exception
+	 * @throws Exception but probably not
 	 */
 	public SchemaTranslator addAnnotatedClasses(String persistenceFile, String persistenceUnit) throws Exception {
 		File f = new File(persistenceFile);
@@ -92,6 +93,7 @@ public class SchemaTranslator {
 	 * Current implementation involves usage of {@link #write(FileOutputStream, String[], Formatter)} method.
 	 * --Removed the drops because this is mainly for in-memory databases and there are errors in the drops. 
 	 * @param outputStream - stream will be used for *.sql file creation.
+	 * @return SchemaTranslator
 	 * @throws IOException
 	 */
 	public SchemaTranslator translate(FileOutputStream outputStream) throws IOException {
@@ -114,7 +116,10 @@ public class SchemaTranslator {
 	/**
 	 * Method writes line by line DDL scripts in the output stream.
 	 * Also each line logs in the console.
-	 * @throws IOException
+	 * @param outputStream to write to
+	 * @param lines array of stuff to write
+	 * @param formatter formatting logic
+	 * @throws IOException  if file access fails
 	 */
 	private void write(FileOutputStream outputStream, String[] lines, Formatter formatter) 
 			throws IOException {
