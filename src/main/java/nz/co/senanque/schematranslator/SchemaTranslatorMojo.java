@@ -48,7 +48,7 @@ public class SchemaTranslatorMojo
 	/**
 	 * Maven project
 	 * 
-	 * @parameter property="${project}"
+	 * @parameter expression="${project}"
 	 * @required
 	 * 
 	 */
@@ -57,7 +57,7 @@ public class SchemaTranslatorMojo
 	/**
 	 * Database dialect.
 	 * 
-	 * @parameter property="org.hibernate.dialect.H2Dialect"
+	 * @parameter expression="org.hibernate.dialect.H2Dialect"
 	 * @required
 	 * 
 	 */
@@ -66,13 +66,13 @@ public class SchemaTranslatorMojo
 	/**
 	 * Name of the dest file.
 	 * 
-	 * @parameter property="${project.artifactId}-${project.version}.sql"
+	 * @parameter expression="${project.artifactId}-${project.version}.sql"
 	 * @required
 	 */
     private String destFile;
 	/**
 	 * Name of the wrapper file.
-	 * @parameter property=null
+	 * @parameter
 	 * 
 	 */
     private String wrapperFile;
@@ -80,7 +80,7 @@ public class SchemaTranslatorMojo
 	/**
 	 * Location of the dest dir.
 	 * 
-	 * @parameter property="${basedir}/target/"
+	 * @parameter expression="${basedir}/target/"
 	 * @required
 	 */
     private String destDir;
@@ -104,7 +104,7 @@ public class SchemaTranslatorMojo
 	/**
 	 * drops flag.
 	 * 
-	 * @parameter property="false"
+	 * @parameter expression="false"
 	 */
     private boolean drops;
     
@@ -161,10 +161,10 @@ public class SchemaTranslatorMojo
     }
 
 	/**
-	 * {@link http://4thline.org/articles/Extending%20the%20Maven%20plugin%20classpath.html}
-	 * @param elements plugin file list
+	 * Found this code <a href="http://4thline.org/articles/Extending%20the%20Maven%20plugin%20classpath.html>here</a>.
+	 * @param elements
 	 * @return valid classloader
-	 * @throws MojoExecutionException generic error
+	 * @throws MojoExecutionException
 	 */
 	protected ClassLoader getClassLoader(List<String> elements) throws MojoExecutionException {
 	    ClassWorld world = new ClassWorld();
