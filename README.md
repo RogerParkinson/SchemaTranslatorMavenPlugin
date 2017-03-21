@@ -22,6 +22,7 @@ Example of use:
 		<persistenceFile>src/main/resources/META-INF/persistence-workflow.xml</persistenceFile>
 		<persistenceUnit>pu-workflow</persistenceUnit>
 		<dialect>org.hibernate.dialect.H2Dialect</dialect>
+		<wrapperFile>${basedir}/wrapper.sql</wrapperFile>
 		<drops>false</drops>
 	</configuration>
 	<dependencies>
@@ -40,3 +41,6 @@ refer to other project-related classes or interfaces or annotations they need to
 
 The resulting file will be placed in target/${project.artifactId}-${project.version}.sql though you can change that
 using `<destFile>` parameter.
+
+You can use an optional `wrapperFile` which is an sql file that must contain a line that starts with `<insert>`.
+The wrapper file will be used as a crude template and the generated schema will be edited into the output at the insert point. This allows you to add things like index definitions to the generated script even though they cannot be derived from the schema. 

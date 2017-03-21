@@ -16,13 +16,19 @@ package nz.co.senanque.schematranslator;
  * limitations under the License.
  */
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 
 import net.peachjean.slf4j.mojo.AbstractLoggingMojo;
 
+import org.apache.commons.lang.StringUtils;
+import org.apache.maven.artifact.DependencyResolutionRequiredException;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.classworlds.ClassRealm;
@@ -67,6 +73,12 @@ public class SchemaTranslatorMojo
 	 * @required
 	 */
     private String destFile;
+	/**
+	 * Name of the wrapper file.
+	 * @parameter
+	 * 
+	 */
+    private String wrapperFile;
 
 	/**
 	 * Location of the dest dir.
@@ -114,16 +126,37 @@ public class SchemaTranslatorMojo
         String packageDirectory = getPath(destDir)+File.separatorChar;
         File targetDir = new File(packageDirectory);
         targetDir.mkdirs();
-
-        SchemaTranslator translator = new SchemaTranslator();
         
-        try {
+        SchemaTranslator translator = new SchemaTranslator();
 
+        FileOutputStream out;
+        BufferedReader reader=null;
+		try {
+			out = new FileOutputStream(new File(destDir+destFile));
+			if (StringUtils.isNotEmpty(wrapperFile)) {
+				reader = new BufferedReader(new FileReader(wrapperFile));
+				String line = reader.readLine();
+				while (line != null && !line.startsWith("<insert>")) {
+					out.write(line.getBytes());
+					out.write('\n');
+					line = reader.readLine();
+				}
+			}
+			
 			translator.setDialect(dialect)
 				.setDrops(drops)
 				.setClassLoader(getClassLoader(project.getTestClasspathElements()))
 				.addAnnotatedClasses(getPath(persistenceFile),getPath(persistenceUnit))
-				.translate(new FileOutputStream(new File(destDir+destFile)));
+				.translate(out);
+			if (reader != null) {
+				out.write('\n');
+				String line = reader.readLine();
+				while (line != null) {
+					out.write(line.getBytes());
+					out.write('\n');
+					line = reader.readLine();
+				}
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new MojoExecutionException(e.getMessage());
@@ -188,6 +221,14 @@ public class SchemaTranslatorMojo
 
 	public void setPersistenceUnit(String persistenceUnit) {
 		this.persistenceUnit = persistenceUnit;
+	}
+
+	public String getWrapperFile() {
+		return wrapperFile;
+	}
+
+	public void setWrapperFile(String wrapperFile) {
+		this.wrapperFile = wrapperFile;
 	}
 
 }
