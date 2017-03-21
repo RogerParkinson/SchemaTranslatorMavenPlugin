@@ -18,17 +18,14 @@ package nz.co.senanque.schematranslator;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 
 import net.peachjean.slf4j.mojo.AbstractLoggingMojo;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.maven.artifact.DependencyResolutionRequiredException;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.classworlds.ClassRealm;
@@ -51,7 +48,7 @@ public class SchemaTranslatorMojo
 	/**
 	 * Maven project
 	 * 
-	 * @parameter expression="${project}"
+	 * @parameter property="${project}"
 	 * @required
 	 * 
 	 */
@@ -60,7 +57,7 @@ public class SchemaTranslatorMojo
 	/**
 	 * Database dialect.
 	 * 
-	 * @parameter expression="org.hibernate.dialect.H2Dialect"
+	 * @parameter property="org.hibernate.dialect.H2Dialect"
 	 * @required
 	 * 
 	 */
@@ -69,13 +66,13 @@ public class SchemaTranslatorMojo
 	/**
 	 * Name of the dest file.
 	 * 
-	 * @parameter expression="${project.artifactId}-${project.version}.sql"
+	 * @parameter property="${project.artifactId}-${project.version}.sql"
 	 * @required
 	 */
     private String destFile;
 	/**
 	 * Name of the wrapper file.
-	 * @parameter
+	 * @parameter property=null
 	 * 
 	 */
     private String wrapperFile;
@@ -83,7 +80,7 @@ public class SchemaTranslatorMojo
 	/**
 	 * Location of the dest dir.
 	 * 
-	 * @parameter expression="${basedir}/target/"
+	 * @parameter property="${basedir}/target/"
 	 * @required
 	 */
     private String destDir;
@@ -107,7 +104,7 @@ public class SchemaTranslatorMojo
 	/**
 	 * drops flag.
 	 * 
-	 * @parameter expression="false"
+	 * @parameter property="false"
 	 */
     private boolean drops;
     
@@ -164,8 +161,8 @@ public class SchemaTranslatorMojo
     }
 
 	/**
-	 * Found this code <a href="http://4thline.org/articles/Extending%20the%20Maven%20plugin%20classpath.html>here</a>.
-	 * @param elements
+	 * @see <a href="http://4thline.org/articles/Extending%20the%20Maven%20plugin%20classpath.html</a>
+	 * @param elements plugin file list
 	 * @return valid classloader
 	 * @throws MojoExecutionException
 	 */

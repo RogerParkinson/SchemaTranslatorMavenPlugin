@@ -62,7 +62,7 @@ public class SchemaTranslator {
 	 * and the persistence unit in it.
 	 * @param persistenceFile
 	 * @param persistenceUnit
-	 * @return
+	 * @return SchemaTranslator
 	 * @throws Exception
 	 */
 	public SchemaTranslator addAnnotatedClasses(String persistenceFile, String persistenceUnit) throws Exception {
